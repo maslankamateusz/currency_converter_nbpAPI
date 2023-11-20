@@ -1,15 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
+    <header>
+        &nbsp;
+    </header>
+    <main>
+        <div class="input-value">
+            <div class="input-dropdown">
+                <input type="text" class="textBox" placeholder="Waluta" readonly>
+                <div class="input-option">
+                    <div onclick="show('USD')"><img class="img-icon" src="images/USD.png"> USD</div>
+                    <div onclick="show('GBP')"><img class="img-icon"src="images/GBP.png"> GBP</div>
+                    <div onclick="show('EUR')"><img class="img-icon"src="images/EUR.png"> EUR</div>
+                </div>
+            </div>
+            <div class="input-entry">
+                <input type="text" placeholder="Mam">
+            </div>
+        </div>
+        
+        <div class="output-value">          
+            <div class="output-dropdown">
+                <input type="text" class="textBox" placeholder="Waluta" readonly>
+                <div class="output-option">
+                    <div onclick="show2('USD')"><img class="img-icon" src="images/USD.png"> USD</div>
+                    <div onclick="show2('GBP')"><img class="img-icon"src="images/GBP.png"> GBP</div>
+                    <div onclick="show2('EUR')"><img class="img-icon"src="images/EUR.png"> EUR</div>
+                </div>
+            </div>
+            <div class="output-entry">
+                <input type="text" placeholder="Mam">
+            </div>
+
+             
+        </div>
     
+
+    </main>
+    <!--
+
     <input type="text" name="pln" id="pln">
     <input type="text" name="usd" id="usd">
     <input type="button" id="btn" value="Przelicz">
+    -->
 
     <script src="index.js"></script>
 </body>
