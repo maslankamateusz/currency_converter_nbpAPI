@@ -1,41 +1,63 @@
-/*
-let inputPln = document.querySelector("#pln"); 
-let inputUsd = document.querySelector("#usd"); 
-let inputBtn = document.querySelector("#btn"); 
 
-function fetchData(countryCode, value) {
-    return fetch(`http://api.nbp.pl/api/exchangerates/rates/a/${countryCode}/`)
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            console.log(data.rates[0].mid);
-            inputUsd.value = value/data.rates[0].mid;
-        })
-        .catch(error => {
-            console.error(error);
-        });
+let inputCurrency = document.querySelector(".input-dropdown .textBox");
+let outputCurrency = document.querySelector(".output-dropdown .textBox");
+
+let inputEntry = document.querySelector(".input-entry input");
+let outputEntry = document.querySelector(".output-entry input");
+
+async function fetchData(inputCountryCode, outputCountryCode) {
+    try {
+        const response1 = await fetch(`http://api.nbp.pl/api/exchangerates/rates/a/${inputCountryCode}/`);
+        const data1 = await response1.json();
+
+        const response2 = await fetch(`http://api.nbp.pl/api/exchangerates/rates/a/${outputCountryCode}/`);
+        const data2 = await response2.json();
+        
+        let inputCurrencyRate = data1.rates[0].mid;
+        let outputCurrencyRate = data2.rates[0].mid;
+        let resultValue = (inputEntry.value * inputCurrencyRate) / outputCurrencyRate;
+
+        outputEntry.value = resultValue.toFixed(2);
+
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 
-inputBtn.addEventListener("click", () => fetchData("usd", inputPln.value))
-*/
+inputEntry.addEventListener("blur", () => {
+    fetchData(inputCurrency.value, outputCurrency.value);
+});
 
 
-function show(currencyName){
+//dropdown
+function inputShow(currencyName){
     document.querySelector(".input-dropdown .textBox").value = currencyName;
-}
-let dropdown = document.querySelector(".input-dropdown");
-dropdown.onclick = function(){
-    dropdown.classList.toggle("active");
+    fetchData(inputCurrency.value, outputCurrency.value);
 }
 
-function show2(currencyName){
+function outputShow(currencyName){
     document.querySelector(".output-dropdown .textBox").value = currencyName;
 }
-let dropdown2 = document.querySelector(".output-dropdown");
-dropdown2.onclick = function(){
-    dropdown2.classList.toggle("active");
+
+
+let inputDropdown = document.querySelector(".input-dropdown");
+inputDropdown.onclick = function(){
+    inputDropdown.classList.toggle("active");
 }
 
+let outputDropdown = document.querySelector(".output-dropdown");
+outputDropdown.onclick = function(){
+    outputDropdown.classList.toggle("active");
+}
+
+//replace btn
+
+let replaceButton = document.querySelector(".replace img");
+replaceButton.addEventListener("click", () => {
+    fetchData(inputCurrency.value, outputCurrency.value);
+    let temp = outputCurrency.value;
+    outputCurrency.value = inputCurrency.value;
+    inputCurrency.value = temp;
+})
 
