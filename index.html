@@ -8,13 +8,22 @@
 </head>
 <body>
     <header>
-        &nbsp;
+        <div class="headerTitle">
+            <p>Dane pochodzą z:</p>
+            <a href="https://api.nbp.pl/" target="_blank">
+                <img src="images/logo-nbp.png" width="300">
+            </a>
+        </div>
     </header>
+    <div class="mainTitle">
+        <p>Przelicznik Walut</p>
+    </div>
     <main>
         <div class="input-value">
             <div class="input-dropdown">
                 <input type="text" class="textBox" placeholder="Waluta" readonly>
                 <div class="input-option">
+                    <div onclick="inputShow('PLN')"><img class="img-icon" src="images/PLN.png"> PLN</div>
                     <div onclick="inputShow('USD')"><img class="img-icon" src="images/USD.png"> USD</div>
                     <div onclick="inputShow('GBP')"><img class="img-icon"src="images/GBP.png"> GBP</div>
                     <div onclick="inputShow('EUR')"><img class="img-icon"src="images/EUR.png"> EUR</div>
@@ -31,6 +40,7 @@
             <div class="output-dropdown">
                 <input type="text" class="textBox" placeholder="Waluta" readonly>
                 <div class="output-option">
+                    <div onclick="outputShow('PLN')"><img class="img-icon" src="images/PLN.png"> PLN</div>
                     <div onclick="outputShow('USD')"><img class="img-icon" src="images/USD.png"> USD</div>
                     <div onclick="outputShow('GBP')"><img class="img-icon"src="images/GBP.png"> GBP</div>
                     <div onclick="outputShow('EUR')"><img class="img-icon"src="images/EUR.png"> EUR</div>
@@ -45,13 +55,6 @@
     
 
     </main>
-    <!--
-
-    <input type="text" name="pln" id="pln">
-    <input type="text" name="usd" id="usd">
-    <input type="button" id="btn" value="Przelicz">
-    -->
-
     <script src="index.js"></script>
 </body>
 </html>
