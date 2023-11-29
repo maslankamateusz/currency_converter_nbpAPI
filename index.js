@@ -51,10 +51,21 @@ async function updateData() {
 
 //checking fields
 function checkFields(){
+    const regex = /^[0-9]{1,8}$/;
     if(inputCurrency.value && outputCurrency.value && inputEntry.value){
-        updateData();
+        if(regex.test(inputEntry.value)){
+            updateData();
+            inputEntry.classList.remove("error");
+        }else{
+            inputEntry.classList.add("error");
+        }
     }else if(inputCurrency.value && outputCurrency.value && outputEntry.value){
-        updateData();
+        if(regex.test(outputEntry.value)){
+            updateData();
+            outputEntry.classList.remove("error");
+        }else{
+            outputEntry.classList.add("error");
+        }
     }
 }
 
@@ -104,4 +115,11 @@ const inputFields = document.querySelectorAll('input');
 inputFields.forEach(input => {
     input.value = '';
 });
+outputEntry.classList.remove("error");
+inputEntry.classList.remove("error");
 });
+
+
+
+
+
