@@ -5,62 +5,60 @@ let outputCurrency = document.querySelector(".output-dropdown .textBox");
 let inputEntry = document.querySelector(".input-entry input");
 let outputEntry = document.querySelector(".output-entry input");
 
-async function fetchData(inputCountryCode, outputCountryCode, field) {
+//fetch async func
+async function fetchData(inputCountryCode){
+    const url = `http://api.nbp.pl/api/exchangerates/rates/a/${inputCountryCode}/`;
+
     try {
-        //for PLN currency
-        if(inputCountryCode == "PLN"){
-            const response2 = await fetch(`http://api.nbp.pl/api/exchangerates/rates/a/${outputCountryCode}/`);
-            const data2 = await response2.json();
-            
-            let outputCurrencyRate = data2.rates[0].mid;
+        const response = await fetch(url);
 
-            let resultValue = 1 * inputEntry.value / outputCurrencyRate;
-            outputEntry.value = resultValue.toFixed(2);
-
+        if (!response.ok) {
+            console.error('Błąd pobierania danych:', response.status);
+            return null;
         }
-        else if(outputCountryCode == "PLN"){
-            const response1 = await fetch(`http://api.nbp.pl/api/exchangerates/rates/a/${inputCountryCode}/`);
-            const data1 = await response1.json();
-
-            let inputCurrencyRate = data1.rates[0].mid;
-
-            let resultValue = (outputEntry.value * 1) / inputCurrencyRate;
-            inputEntry.value = resultValue.toFixed(2);
-        }
-        //for non PLN currency
-        if(inputCountryCode != "PLN" || outputCountryCode != "PLN"){
-            const response1 = await fetch(`http://api.nbp.pl/api/exchangerates/rates/a/${inputCountryCode}/`);
-            const data1 = await response1.json();
-
-            const response2 = await fetch(`http://api.nbp.pl/api/exchangerates/rates/a/${outputCountryCode}/`);
-            const data2 = await response2.json();
-            
-            let inputCurrencyRate = data1.rates[0].mid;
-            let outputCurrencyRate = data2.rates[0].mid;
-            if(field == "input"){
-                let resultValue = (inputEntry.value * inputCurrencyRate) / outputCurrencyRate;
-                outputEntry.value = resultValue.toFixed(2);
-            }
-            else if(field == "output"){
-                let resultValue = (outputEntry.value * outputCurrencyRate) / inputCurrencyRate;
-                inputEntry.value = resultValue.toFixed(2);
-            }
-        }
+        const data = await response.json();
+        const parseData = data.rates[0].mid;
+        return parseData;
     } catch (error) {
-        console.error(error);
+        console.error('Wystąpił błąd:', error);
+        return null; 
     }
 }
-
-function checkFields(){
-    if(inputCurrency.value && outputCurrency.value && inputEntry.value){
-        fetchData(inputCurrency.value, outputCurrency.value, "input");
+//func updating fields
+async function updateData() {
+    let inputCurrencyRate;
+    let outputCurrencyRate;
+    if(inputCurrency.value == "PLN"){
+        inputCurrencyRate = 1;
+    }else{
+        inputCurrencyRate = await fetchData(inputCurrency.value);
     }
-    else if(inputCurrency.value && outputCurrency.value && outputEntry.value){
-        fetchData(inputCurrency.value, outputCurrency.value, "output");
+    if(outputCurrency.value == "PLN"){
+        outputCurrencyRate = 1;
+    }else{
+        outputCurrencyRate = await fetchData(outputCurrency.value);
     }
+    if(inputEntry.value){
+        let result = (inputCurrencyRate * inputEntry.value) / outputCurrencyRate;
+        outputEntry.value = result.toFixed(2);
+    }
+    else if(outputEntry.value){
+        let result = (outputCurrencyRate * outputEntry.value) / inputCurrencyRate;
+        inputEntry.value = result.toFixed(2);
+    }
+    
 }
 
 //checking fields
+function checkFields(){
+    if(inputCurrency.value && outputCurrency.value && inputEntry.value){
+        updateData();
+    }else if(inputCurrency.value && outputCurrency.value && outputEntry.value){
+        updateData();
+    }
+}
+
+
 inputEntry.addEventListener("blur", () => {
     checkFields();
 });
@@ -80,7 +78,6 @@ function outputShow(currencyName){
     checkFields();
 }
 
-
 let inputDropdown = document.querySelector(".input-dropdown");
 inputDropdown.onclick = function(){
     inputDropdown.classList.toggle("active");
@@ -92,7 +89,7 @@ outputDropdown.onclick = function(){
 }
 
 //replace btn
-let replaceButton = document.querySelector(".replace img");
+let replaceButton = document.querySelector(".replace");
 replaceButton.addEventListener("click", () => {
     let temp = outputCurrency.value;
     outputCurrency.value = inputCurrency.value;
@@ -100,3 +97,11 @@ replaceButton.addEventListener("click", () => {
     checkFields();
 });
 
+//clear btn
+let clearButton = document.querySelector(".clear");
+clearButton.addEventListener("click", () => {
+const inputFields = document.querySelectorAll('input'); 
+inputFields.forEach(input => {
+    input.value = '';
+});
+});

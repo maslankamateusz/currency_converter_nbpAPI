@@ -61,8 +61,12 @@ main{
     padding-top: 5vh;
     padding-right: 8vw;
 }
-.replace{
-    padding-top: 5vh;
+.additionalButtons{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    padding-bottom: 35vh;
+    padding-top: 1vh;
 }
 .input-option,
 .output-option {
@@ -124,7 +128,7 @@ main{
     background: #fff;
     border: none;
     outline: none;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 20px rgba(22, 46, 82, 0.5);
     padding: 12px 20px;
     border-radius: 10px;
     font-size: 1.2rem;
@@ -136,7 +140,7 @@ main{
     top: 60px;
     width: 100%;
     background: #fff;
-    box-shadow: 0 30px 30px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 20px rgba(22, 46, 82, 0.5);
     border-radius: 10px;
     overflow: hidden;
     display: none;
@@ -164,7 +168,7 @@ main{
     height: 5.5vh;
     border: none;
     outline: none;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 20px rgba(22, 46, 82, 0.5);
     border-radius: 10px;
     font-size: 1.2rem;
 
