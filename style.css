@@ -36,29 +36,29 @@ nav {
 }
 
 nav a {
-    position: relative; /* Dodanie position: relative */
+    position: relative;
     padding-bottom: 2%;
     padding-right: 5%;
     text-decoration: none;
     color: #000;
     font-size: 2rem;
     font-weight: 500;
-    overflow: hidden; /* Ukryj początkowo linie podkreślenia */
+    overflow: hidden;
 }
 
 nav a::after {
     content: '';
     position: absolute;
-    width: 0; /* Początkowo szerokość linii wynosi 0 */
+    width: 0;
     height: 4px;
     bottom: -1px;
     left: 0;
     background-color: rgb(22, 46, 82);
-    transition: width 0.3s ease; /* Animacja szerokości linii */
+    transition: width 0.3s ease; 
 }
 
 nav a:hover::after {
-    width: 100%; /* Po najechaniu animuj szerokość do 100% */
+    width: 100%; 
 }
 
 .mainTitle{
@@ -213,22 +213,4 @@ main{
 .output-entry .error{
     box-shadow: 0 5px 20px rgba(100, 0, 0, 0.5);
     color: rgb(100, 0, 0);
-}
-.currencyTable{
-    margin-top: 10vh;
-}
-table {
-    border-collapse: collapse;
-    width: 50%;
-    margin: 20px auto;
-}
-
-th, td {
-    border: 1px solid #000;
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
 }
