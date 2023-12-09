@@ -1,13 +1,29 @@
 class CurrencyTable{
 
     constructor(){
-        this.generateTable();
+        this.dataPickerInput = document.querySelector("#dataPickerInput");
+        this.url = "http://api.nbp.pl/api/exchangerates/tables/C/2022-12-08/"
+        this.dataPickerInput.addEventListener("blur", () => {
+            this.updateData();
+        })
+    }
+    updateData = () => {
+        let inputValue = this.dataPickerInput.value;
+        let inputDate = new Date(inputValue);
+
+        if(inputDate.getDay() === 6 || inputDate.getDay() === 7){
+            console.log("Wprowadzono złą date");
+        }else{
+            this.url = `http://api.nbp.pl/api/exchangerates/tables/C/${inputValue}/`;
+            console.log(this.url);
+            this.generateTable();
+        }
+       
     }
     async fetchTableData() {
-        const url = `http://api.nbp.pl/api/exchangerates/tables/C/today/`;
         
         try {
-            const response = await fetch(url);
+            const response = await fetch(this.url);
 
             if (!response.ok) {
                 console.error('Błąd pobierania danych:', response.status);
@@ -15,7 +31,6 @@ class CurrencyTable{
             }
             const data = await response.json();
             const rates = data[0].rates;
-            console.log(rates);
             return rates;
 
         } catch (error) {
@@ -25,7 +40,6 @@ class CurrencyTable{
     }
 
     async generateTable() {
-        console.log("coś");
         const rates = await this.fetchTableData();
 
         if (!rates) {
@@ -33,7 +47,6 @@ class CurrencyTable{
             return;
         }
         const tableBody = document.getElementById('tableBody');
-        console.log(rates);
         rates.forEach(rate => {
             const row = document.createElement('tr');
 
