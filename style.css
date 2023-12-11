@@ -25,7 +25,7 @@ header .headerTitle{
     padding-left: 10%;
 }
 header .headerTitle p{
-    padding-bottom: 1.5%;
+    padding-bottom: 1.8%;
 }
 nav {
     width: 30vw;
@@ -70,7 +70,7 @@ nav a:hover::after {
 }
 .mainTitle p{
     padding-top: 5%;
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 500;
 }
 main{

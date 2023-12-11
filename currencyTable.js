@@ -1,24 +1,33 @@
 class CurrencyTable{
 
     constructor(){
-        this.dataPickerInput = document.querySelector("#dataPickerInput");
+        this.dataPickerInput = document.querySelector(".dataPickerInput");
         this.tableHeader = document.querySelector(".tableHeader p");
+        this.tableError = document.querySelector(".tableError p");
+        this.init();
+    }
+    init = () => {
         this.today = new Date();
-        console.log(this.today);
-        this.url = "http://api.nbp.pl/api/exchangerates/tables/C/2022-12-08/"
+        this.todayDate = `${this.today.getDate()}-${this.today.getMonth()}-${this.today.getFullYear()}`;
+        this.tableHeader.innerHTML = `Dane tabeli na dzień: ${this.todayDate}`;
+        this.url = "http://api.nbp.pl/api/exchangerates/tables/C/2022-12-08/";
         this.generateTable();
         this.dataPickerInput.addEventListener("change", () => {
             this.updateData();
-        })
+        });
     }
     updateData = () => {
         let inputValue = this.dataPickerInput.value;
         let inputDate = new Date(inputValue);
-        if(inputDate.getDay() === 6 || inputDate.getDay() === 7 || inputDate > this.today){
-            console.log("Wprowadzono złą date");
-        }else{
+        if( inputDate > this.today){
+            this.tableError.innerHTML = "Wprowadzono przyszłą date!";
+        }else if(inputDate.getDay() === 6 || inputDate.getDay() === 7){
+            this.tableError.innerHTML = "Brak danych dla dni weekendowych!";
+        }
+        else{
             this.url = `http://api.nbp.pl/api/exchangerates/tables/C/${inputValue}/`;
             this.tableHeader.innerHTML = `Dane tabeli na dzień: ${inputValue}`;
+            this.tableError.innerHTML = "&nbsp;";
             this.generateTable();
         }
        
@@ -72,7 +81,6 @@ class CurrencyTable{
 
             tableBody.appendChild(row);
         });
-
     }
 
 }
