@@ -2,20 +2,23 @@ class CurrencyTable{
 
     constructor(){
         this.dataPickerInput = document.querySelector("#dataPickerInput");
+        this.tableHeader = document.querySelector(".tableHeader p");
+        this.today = new Date();
+        console.log(this.today);
         this.url = "http://api.nbp.pl/api/exchangerates/tables/C/2022-12-08/"
-        this.dataPickerInput.addEventListener("blur", () => {
+        this.generateTable();
+        this.dataPickerInput.addEventListener("change", () => {
             this.updateData();
         })
     }
     updateData = () => {
         let inputValue = this.dataPickerInput.value;
         let inputDate = new Date(inputValue);
-
-        if(inputDate.getDay() === 6 || inputDate.getDay() === 7){
+        if(inputDate.getDay() === 6 || inputDate.getDay() === 7 || inputDate > this.today){
             console.log("Wprowadzono złą date");
         }else{
             this.url = `http://api.nbp.pl/api/exchangerates/tables/C/${inputValue}/`;
-            console.log(this.url);
+            this.tableHeader.innerHTML = `Dane tabeli na dzień: ${inputValue}`;
             this.generateTable();
         }
        
@@ -47,6 +50,7 @@ class CurrencyTable{
             return;
         }
         const tableBody = document.getElementById('tableBody');
+        tableBody.innerHTML = "";
         rates.forEach(rate => {
             const row = document.createElement('tr');
 

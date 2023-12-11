@@ -25,18 +25,23 @@
             <label for="dataPickerInput">Podaj date: </label>
             <input type="date" id="dataPickerInput">
         </div>
-        <table class="currencyTable">
-            <thead>
-                <tr>
-                    <th>Waluta</th>
-                    <th>Kod</th>
-                    <th>Kurs sprzedaży</th>
-                    <th>Kurs kupna</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-            </tbody>
-        </table>
+        <div class="tableContainer">
+            <div class="tableHeader">
+                <p></p>
+            </div>
+            <table class="currencyTable">
+                <thead>
+                    <tr>
+                        <th>Waluta</th>
+                        <th>Kod</th>
+                        <th>Kurs sprzedaży</th>
+                        <th>Kurs kupna</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>        
     </main>
     <script src="currencyTable.js"></script>    
 </body>
