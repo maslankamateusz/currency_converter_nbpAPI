@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chart.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Przeliczanie walut</title>
+</head>
+<body>
+    <header>
+        <div class="headerTitle">
+            <p>Dane pochodzą z:</p>
+            <a href="https://api.nbp.pl/" target="_blank">
+                <img src="images/logo-nbp.png" width="300">
+            </a>
+        </div>
+        <nav>
+            <a href="index.html">Przelicznik Walut</a>
+            <a href="currencyTable.html">Aktualny kurs</a>
+            <a href="chart.html">Wykresy</a>
+        </nav>
+    </header>
+    <main>
+        <div class="input-value">
+            <div class="input-dropdown">
+                <input type="text" class="textBox" placeholder="Podaj walute" readonly>
+                <div class="input-option">
+                    <div onclick="currencyChart.inputDropdownShow('USD')"><img class="img-icon" src="images/USD.png"> USD</div>
+                    <div onclick="currencyChart.inputDropdownShow('GBP')"><img class="img-icon"src="images/GBP.png"> GBP</div>
+                    <div onclick="currencyChart.inputDropdownShow('EUR')"><img class="img-icon"src="images/EUR.png"> EUR</div>
+                </div>
+            </div>
+        </div>
+        <div class="dateFrom">
+            <label for="dataPickerInput" class="dataPickerInputFromLabel">Podaj date początkową: </label>
+            <input type="date" class="dataPickerInputFrom">
+        </div>
+        <div class="dateTo">
+            <label for="dataPickerInput" class="dataPickerInputToLabel">Podaj date końcową: </label>
+            <input type="date" class="dataPickerInputTo">
+        </div>
+                
+
+
+        <canvas id="chart"></canvas>
+    </main>
+    <script src="chart.js"></script>    
+</body>
