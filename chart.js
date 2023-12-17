@@ -8,7 +8,7 @@ class CurrencyChart {
         this.currencyInputOption = document.querySelector(".input-option")
         this.dateFrom = document.querySelector(".dateFrom input");
         this.dateTo = document.querySelector(".dateTo input");
-
+        this.chartError = document.querySelector(".chartError p");
         this.currencyInputOption.addEventListener("click", () => {
             this.checkFields();
         });
@@ -27,12 +27,16 @@ class CurrencyChart {
     checkFields() {
         const today = new Date().toISOString().split('T')[0]; 
     
-        if (this.currencyName.value && this.dateFrom.value && this.dateTo.value && this.dateFrom.value <= today && this.dateTo.value <= today) {
-            let url = `http://api.nbp.pl/api/exchangerates/rates/A/${this.currencyName.value}/${this.dateFrom.value}/${this.dateTo.value}`
-            this.fetchData(url);
-        } else {
-            console.error("Podano nieprawidłowe dane.");
-        }
+        if (this.currencyName.value && this.dateFrom.value && this.dateTo.value) {
+            if(this.dateFrom.value <= today && this.dateTo.value <= today && this.dateFrom.value<this.dateTo.value){
+                let url = `http://api.nbp.pl/api/exchangerates/rates/A/${this.currencyName.value}/${this.dateFrom.value}/${this.dateTo.value}`
+                this.fetchData(url);
+                this.chartError.innerHTML = "&nbsp;";
+            }else {
+                this.chartError.innerHTML = "Wprowadzono błędne dane!";
+            }
+            
+        } 
     }
     
     async fetchData(url) {

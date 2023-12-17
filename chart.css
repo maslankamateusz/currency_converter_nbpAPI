@@ -66,7 +66,8 @@ main{
     width: 100vw;
     height: 88vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .input-value{
@@ -124,11 +125,31 @@ main{
 input[type="date"]::-webkit-calendar-picker-indicator {
     opacity: 0;
 }
-
+.chart{
+    background-color: #fff;
+    width: 100vw;
+    height: 60vh;
+    padding-bottom: 5vh;
+    padding-top: 5vh;
+    display: flex;
+    justify-content: center;
+}
 #chart{
-    position: absolute;
-    left: 20vw;
-    top: 30vh;
-    max-width: 65vw;
-    max-height: 60vh;
+    width: 120%;
+    height: 120%;
+}
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.chartError{
+    width: 100vw;
+    height: 5vh;
+    text-align: center;
+}
+
+.chartError p{
+    font-size: 1.8rem;
+    color: #F00;
 }

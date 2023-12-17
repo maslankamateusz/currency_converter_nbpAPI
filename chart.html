@@ -23,28 +23,37 @@
         </nav>
     </header>
     <main>
-        <div class="input-value">
-            <div class="input-dropdown">
-                <input type="text" class="textBox" placeholder="Podaj walute" readonly>
-                <div class="input-option">
-                    <div onclick="currencyChart.inputDropdownShow('USD')"><img class="img-icon" src="images/USD.png"> USD</div>
-                    <div onclick="currencyChart.inputDropdownShow('GBP')"><img class="img-icon"src="images/GBP.png"> GBP</div>
-                    <div onclick="currencyChart.inputDropdownShow('EUR')"><img class="img-icon"src="images/EUR.png"> EUR</div>
+        <div class="container">
+            <!--
+
+            -->
+            <div class="input-value">
+                <div class="input-dropdown">
+                    <input type="text" class="textBox" placeholder="Podaj walute" readonly>
+                    <div class="input-option">
+                        <div onclick="currencyChart.inputDropdownShow('USD')"><img class="img-icon" src="images/USD.png"> USD</div>
+                        <div onclick="currencyChart.inputDropdownShow('GBP')"><img class="img-icon"src="images/GBP.png"> GBP</div>
+                        <div onclick="currencyChart.inputDropdownShow('EUR')"><img class="img-icon"src="images/EUR.png"> EUR</div>
+                    </div>
                 </div>
             </div>
+            <div class="dateFrom">
+                <label for="dataPickerInput" class="dataPickerInputFromLabel">Podaj date początkową: </label>
+                <input type="date" class="dataPickerInputFrom">
+            </div>
+            <div class="dateTo">
+                <label for="dataPickerInput" class="dataPickerInputToLabel">Podaj date końcową: </label>
+                <input type="date" class="dataPickerInputTo">
+            </div>
         </div>
-        <div class="dateFrom">
-            <label for="dataPickerInput" class="dataPickerInputFromLabel">Podaj date początkową: </label>
-            <input type="date" class="dataPickerInputFrom">
+        <div class="chartError">
+            <p>&nbsp;</p>
         </div>
-        <div class="dateTo">
-            <label for="dataPickerInput" class="dataPickerInputToLabel">Podaj date końcową: </label>
-            <input type="date" class="dataPickerInputTo">
-        </div>
-                
-
-
-        <canvas id="chart"></canvas>
+        <div class="chart">
+            <canvas id="chart"></canvas>
+        </div> 
+        
     </main>
+      
     <script src="chart.js"></script>    
 </body>
