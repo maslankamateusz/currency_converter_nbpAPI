@@ -84,14 +84,15 @@ main{
     position: relative;
     width: 100%;
     height: 6vh;
+}
+.input-option{
     z-index: 1000;
 }
 
 .dateFrom, .dateTo {
     height: 12vh;
     padding: 3vh 0;
-    margin-top: 3vh; 
-    margin-bottom: 10px;
+    margin-top: 3vh;
     width: 30%;
     display: flex;
     justify-content: center;
@@ -113,7 +114,7 @@ main{
     background: url(images/calendar-icon.png);
     background-repeat: no-repeat;
     background-position: 90% 60%;
-    padding: 15px 5px;
+    padding: 0 10px;
     outline: none;
     border: none;
     border-radius: 4px;
@@ -121,28 +122,48 @@ main{
     box-shadow: 0 5px 20px rgba(22, 46, 82, 0.5);
     border-radius: 10px;
 }
+.next-currency-btn{
+    display: flex;
+    align-items: center;
+    height: 12vh;
+    padding: 3vh 0;
+    margin-top: 3vh;
+}
+.next-currency-btn button{
+    color: rgb(22, 46, 82);
+    padding: 0 20px;
+    height: 100%;
+    font-size: 1.2rem;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 5px 20px rgba(22, 46, 82, 0.5);
+    border-radius: 10px;
+    transition: 1s;
+}
+.next-currency-btn button:hover{
+    background-color: rgb(22, 46, 82);
+    color: #fff;
+}
+
+.first-input-container{
+    display: flex;
+    justify-content: center;
+    margin-bottom: -2vh;
+
+}
+.second-input-container{
+    display: flex;
+    justify-content: center;
+    margin-top: -2vh;
+    opacity: 1;
+}
+
 
 input[type="date"]::-webkit-calendar-picker-indicator {
     opacity: 0;
 }
-.chart{
-    background-color: #fff;
-    width: 100vw;
-    height: 60vh;
-    padding-bottom: 5vh;
-    padding-top: 5vh;
-    display: flex;
-    justify-content: center;
-}
-#chart{
-    width: 120%;
-    height: 120%;
-}
-.container{
-    display: flex;
-    justify-content: center;
-}
-
 .chartError{
     width: 100vw;
     height: 5vh;
@@ -152,4 +173,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .chartError p{
     font-size: 1.8rem;
     color: #F00;
+}
+.chart{
+    background-color: #FFF;
+    width: 60vw;
+    height: 58vh;
+    margin-left: 20vw;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2vh;
+    display: flex;
+    justify-self: center;
 }

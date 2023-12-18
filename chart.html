@@ -23,17 +23,14 @@
         </nav>
     </header>
     <main>
-        <div class="container">
-            <!--
-
-            -->
+        <div class="first-input-container">
             <div class="input-value">
                 <div class="input-dropdown">
                     <input type="text" class="textBox" placeholder="Podaj walute" readonly>
                     <div class="input-option">
-                        <div onclick="currencyChart.inputDropdownShow('USD')"><img class="img-icon" src="images/USD.png"> USD</div>
-                        <div onclick="currencyChart.inputDropdownShow('GBP')"><img class="img-icon"src="images/GBP.png"> GBP</div>
-                        <div onclick="currencyChart.inputDropdownShow('EUR')"><img class="img-icon"src="images/EUR.png"> EUR</div>
+                        <div onclick="currencyChart.firstInputDropdownShow('USD')"><img class="img-icon" src="images/USD.png"> USD</div>
+                        <div onclick="currencyChart.firstInputDropdownShow('GBP')"><img class="img-icon"src="images/GBP.png"> GBP</div>
+                        <div onclick="currencyChart.firstInputDropdownShow('EUR')"><img class="img-icon"src="images/EUR.png"> EUR</div>
                     </div>
                 </div>
             </div>
@@ -45,14 +42,39 @@
                 <label for="dataPickerInput" class="dataPickerInputToLabel">Podaj date końcową: </label>
                 <input type="date" class="dataPickerInputTo">
             </div>
+            <div class="next-currency-btn">
+                <button>Dodaj walute</button>
+            </div>
+        </div>
+        <div class="second-input-container ">
+            <div class="input-value">
+                <div class="input-dropdown">
+                    <input type="text" class="textBox" placeholder="Podaj walute" readonly>
+                    <div class="input-option">
+                        <div onclick="currencyChart.secondInputDropdownShow('USD')"><img class="img-icon" src="images/USD.png"> USD</div>
+                        <div onclick="currencyChart.secondInputDropdownShow('GBP')"><img class="img-icon"src="images/GBP.png"> GBP</div>
+                        <div onclick="currencyChart.secondInputDropdownShow('EUR')"><img class="img-icon"src="images/EUR.png"> EUR</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dateFrom">
+                <label for="dataPickerInput" class="dataPickerInputFromLabel">Podaj date początkową: </label>
+                <input type="date" class="dataPickerInputFrom">
+            </div>
+            <div class="dateTo">
+                <label for="dataPickerInput" class="dataPickerInputToLabel">Podaj date końcową: </label>
+                <input type="date" class="dataPickerInputTo">
+            </div>
+            <div class="next-currency-btn">
+                <button>Usuń walute</button>
+            </div>
         </div>
         <div class="chartError">
-            <p>&nbsp;</p>
-        </div>
+            <p>Błąd!</p>
+        </div>        
         <div class="chart">
             <canvas id="chart"></canvas>
         </div> 
-        
     </main>
       
     <script src="chart.js"></script>    
